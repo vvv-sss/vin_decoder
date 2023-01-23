@@ -269,12 +269,6 @@ body {
 /* === Fetched data ============================================ */
 /* ============================================================= */
 
-.vin-data,
-.vin-data-description-list {
-    padding-right: 1rem;
-    border-right: 1px solid var(--clr-text);
-}
-
 .vin-data ul,
 .vin-data-description-list ul {
     padding: 0;
@@ -365,6 +359,14 @@ body {
 
 /* === Media Query ============================================= */
 /* ============================================================= */
+
+@media only screen and (min-width: 500px) {
+    .vin-data,
+    .vin-data-description-list {
+        padding-right: 1rem;
+        border-right: 1px solid var(--clr-text);
+    }
+}
 
 @media only screen and (min-width: 800px) {
 
