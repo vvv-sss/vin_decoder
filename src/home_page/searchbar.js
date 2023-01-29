@@ -1,10 +1,16 @@
-import ValidationClientSide from './searchbar_client_validation';
+import ValidationClientSide from './SearchBar__ValidationClientSide';
 import LoadingIcon from './icons/loading_icon.svg';
 
-function SearchBar(props) {
-    const changeVinNumber = event => {
+const SearchBar = (props) => {
+
+    const handleInputChange = event => {
         const vin = event.target.value.toUpperCase();
         props.setVinNumber(vin);
+    }
+
+    const handleBtnClick = () => {
+        props.setStartFetching(true);
+        props.setSearchIconChange(LoadingIcon);
     }
 
     return (
@@ -13,27 +19,25 @@ function SearchBar(props) {
                 <input 
                     type="text" 
                     placeholder="Enter your VIN number" 
-                    onChange={ event => changeVinNumber(event) }
+                    onChange={ event => handleInputChange(event) }
                     onClick={ () => props.setIsInputActive(true) }
                     value={ props.vinNumber }
                     maxLength="17" />
                 <div>
-                    <button onClick={() => {
-                        props.setStartFetching(true);
-                        props.setSearchIconChange(LoadingIcon);
-                        }
-                    }>
+                    <button onClick={ handleBtnClick }>
                         Click to search...
                     </button>
                     <img 
                         src={ props.searchIconChange }
                         alt="Search Icon"
-                        { ...props.searchIconChange === LoadingIcon && { style : {animation: "loading 0.5s ease infinite"} } } />
+                        { ...props.searchIconChange === LoadingIcon && { style : {animation: "loading 0.5s ease infinite"} } }
+                    />
                 </div>
             </div>
             <ValidationClientSide 
                 isInputActive={ props.isInputActive }
-                vinToValidate={ props.vinNumber } />
+                vinToValidate={ props.vinNumber }
+            />
         </section>
     );
 }

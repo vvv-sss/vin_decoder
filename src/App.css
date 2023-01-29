@@ -4,8 +4,13 @@
 /* ============================================================ */
 
 :root {
-    --clr-background: #212121;
-    --clr-text: hsl(0, 0%, 76%);
+    --dark-mode-background: hsl(0, 0%, 13%);
+    --light-mode-background: hsl(0, 0%, 76%);
+    --dark-mode-text: hsl(0, 0%, 76%);
+    --light-mode-text: hsl(0, 0%, 5%);
+
+    --clr-background: var(--dark-mode-background);
+    --clr-text: var(--dark-mode-text);
     --clr-positive: hsl(165, 100%, 33%);
     --clr-negative: hsl(337, 100%, 50%);
     --clr-icon-dark: brightness(0) saturate(100%) invert(9%) sepia(13%) saturate(18%) hue-rotate(332deg) brightness(97%) contrast(90%);

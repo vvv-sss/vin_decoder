@@ -1,17 +1,18 @@
-import SearchBar from "./searchbar";
-import SearchHistory from "./search_history";
-import HowToUseInfo from "./how_to_use_info";
-import DecodedVinNumber from './fetch_vin_data';
+import SearchBar from "./SearchBar";
+import SearchHistory from "./SearchHistory";
+import HowToUseInfo from "./HowToUseInfo";
+import DecodedVinNumberData from './DecodedVinNumberData';
 import SearchIcon from './icons/search_icon.svg';
 import { useState, useEffect } from 'react';
 
-function Home() {
+const Home = () => {
     const [vinNumber, setVinNumber] = useState("");
     const [isInputActive, setIsInputActive] = useState(false);
     const [startFetching, setStartFetching] = useState(false);
     const [searchIconChange, setSearchIconChange] = useState(SearchIcon);
     const [vinForSearchHistory, setVinForSearchHistory] = useState();
 
+    // Function to show last decoded VIN number after going to About page and back to Home page
     useEffect(() => {
         if ((sessionStorage.getItem("aboutPageVisited") === "false") &&
         (sessionStorage.getItem("searchBtnClicked") === "true") &&
@@ -37,7 +38,7 @@ function Home() {
                 setVinNumber={ setVinNumber } 
                 setIsInputActive={ setIsInputActive } />
             <HowToUseInfo />
-            <DecodedVinNumber 
+            <DecodedVinNumberData 
                 vinNumber={ vinNumber }
                 setVinNumber={ setVinNumber }
                 setSearchIconChange={ setSearchIconChange }
