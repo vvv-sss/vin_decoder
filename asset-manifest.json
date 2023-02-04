@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/vin_decoder/static/css/main.af1059a6.css",
-    "main.js": "/vin_decoder/static/js/main.8ead6fdc.js",
+    "main.css": "/vin_decoder/static/css/main.7399a1e6.css",
+    "main.js": "/vin_decoder/static/js/main.54c3394b.js",
     "static/media/light_mode_icon.svg": "/vin_decoder/static/media/light_mode_icon.435cca1129542d6dbb604e27b89e5776.svg",
     "static/media/loading_icon.svg": "/vin_decoder/static/media/loading_icon.7f811bf893e020804400d9e55e19f591.svg",
     "index.html": "/vin_decoder/index.html",
     "static/media/dark_mode_icon.svg": "/vin_decoder/static/media/dark_mode_icon.bceb5c96fea54d3604ba95ea2d23137e.svg",
     "static/media/search_icon.svg": "/vin_decoder/static/media/search_icon.56982c1a4d1ef20556e024945d6badc1.svg",
     "static/media/arrow_down_icon.svg": "/vin_decoder/static/media/arrow_down_icon.2e0eb198ce599e3a4ee5d4df46fd6bd1.svg",
-    "main.af1059a6.css.map": "/vin_decoder/static/css/main.af1059a6.css.map",
-    "main.8ead6fdc.js.map": "/vin_decoder/static/js/main.8ead6fdc.js.map"
+    "main.7399a1e6.css.map": "/vin_decoder/static/css/main.7399a1e6.css.map",
+    "main.54c3394b.js.map": "/vin_decoder/static/js/main.54c3394b.js.map"
   },
   "entrypoints": [
-    "static/css/main.af1059a6.css",
-    "static/js/main.8ead6fdc.js"
+    "static/css/main.7399a1e6.css",
+    "static/js/main.54c3394b.js"
   ]
 }
