@@ -11,10 +11,25 @@ const Home = () => {
 
     // Function to show last decoded VIN number after going to About page and back to Home page
     useEffect(() => {
+        // Statement to create initial array for search history
+        if (!localStorage.vinHistory) {
+            localStorage.setItem(
+                'vinHistory',
+                JSON.stringify(["array to store search history"])
+            );
+        }
+
+        let lastSearch;
+        try {
+            lastSearch = JSON.parse(localStorage.getItem('vinHistory'))[0];
+        } catch(error) {
+            console.log(error);
+        }
+
         if ((sessionStorage.getItem("aboutPageVisited") === "false") &&
         (sessionStorage.getItem("searchBtnClicked") === "true") &&
-        (localStorage.getItem("searchHistoryResult1").length === 17)) {
-            setVinNumber(localStorage.getItem("searchHistoryResult1"));
+        (lastSearch.length === 17)) {
+            setVinNumber(lastSearch);
             setStartFetching(true);
         }
     }, []);

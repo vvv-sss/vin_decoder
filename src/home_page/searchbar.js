@@ -5,7 +5,9 @@ import { useState, useEffect } from 'react';
 
 const SearchBar = ({ vinNumber, setVinNumber, startFetching, setStartFetching }) => {
     const [isInputActive, setIsInputActive] = useState(false);
-    const [searchIconChange, setSearchIconChange] = useState(SearchIcon);
+    const [searchIcon, setSearchIcon] = useState(SearchIcon);
+    const [searchIconAnimationCount, setSearchIconAnimationCount] = useState("");
+    const animation = `loading 0.5s ease${searchIconAnimationCount}`;
 
     const handleInputChange = e => {
         const vin = e.target.value.toUpperCase();
@@ -20,9 +22,11 @@ const SearchBar = ({ vinNumber, setVinNumber, startFetching, setStartFetching })
     // Function to change icon during fetching the data
     useEffect(() => {
         if (startFetching) {
-            setSearchIconChange(LoadingIcon);
+            setSearchIcon(LoadingIcon);
+            setSearchIconAnimationCount(" infinite")
         } else {
-            const t = window.setTimeout(() => setSearchIconChange(SearchIcon), 1000);
+            setSearchIconAnimationCount("");
+            const t = window.setTimeout(() => setSearchIcon(SearchIcon), 1000);
             return () => {
                 window.clearTimeout(t);
             };
@@ -43,9 +47,9 @@ const SearchBar = ({ vinNumber, setVinNumber, startFetching, setStartFetching })
                 <div>
                     <button>Click to search...</button>
                     <img 
-                        src={ searchIconChange }
+                        src={ searchIcon }
                         alt="Search Icon"
-                        { ...searchIconChange === LoadingIcon && { style : {animation: "loading 0.5s ease infinite"} } }
+                        style={{animation: animation}}
                     />
                 </div>
             </form>

@@ -1,17 +1,31 @@
 import { useState, useEffect } from "react";
 
 const SearchHistory = ({ vinForSearchHistory, setVinNumber }) => {
+    
     // Creation of 5 history positions inside Local Storage
-    if (vinForSearchHistory) {
-            if ((vinForSearchHistory !== localStorage.getItem("searchHistoryResult1")) &&
-            (vinForSearchHistory !== undefined)) {
-            localStorage.setItem("searchHistoryResult5", localStorage.getItem("searchHistoryResult4"));
-            localStorage.setItem("searchHistoryResult4", localStorage.getItem("searchHistoryResult3"));
-            localStorage.setItem("searchHistoryResult3", localStorage.getItem("searchHistoryResult2"));
-            localStorage.setItem("searchHistoryResult2", localStorage.getItem("searchHistoryResult1"));
-            localStorage.setItem("searchHistoryResult1", vinForSearchHistory);
+    const callVinHistory = () => {
+        let vinHistory;
+        try {
+            vinHistory = JSON.parse(localStorage.getItem('vinHistory'));
+        } catch(error) {
+            console.log(error);
         }
+        return vinHistory;
     }
+
+    const saveVinHistory = (vin) => {
+        const data = callVinHistory();
+        if (vin && vin !== data[0]) {
+            localStorage.setItem(
+                'vinHistory',
+                JSON.stringify([vin, ...(data ?? [])].slice(0, 5))
+            );
+        }
+    };
+
+    useEffect(() => {
+        saveVinHistory(vinForSearchHistory);
+    },[vinForSearchHistory])
 
     // Handle of search element click
     const handleClick = (val) => {
@@ -23,19 +37,17 @@ const SearchHistory = ({ vinForSearchHistory, setVinNumber }) => {
     const [searchHistoryList, setSearchHistoryList] = useState();
 
     const createSearchHistoryList = () => {
-        const list = [];
-        for(let i = 1; i < 6; i++) {
-            let historyValue = localStorage.getItem(`searchHistoryResult${i}`);
-            if (historyValue && historyValue.length === 17) {
-                let element = <li key={ i } onClick={ () => handleClick(historyValue) }>{ historyValue }</li>;
-                list.push(element);
+        const data = callVinHistory();
+        const list = data.map((vin, key) => {
+            if (vin && vin.length === 17) {
+                return <li key={ key } onClick={ () => handleClick(vin) }>{ vin }</li>;
             }
-        }
+        });
         setSearchHistoryList(list);
     }
     useEffect(() => createSearchHistoryList, [vinForSearchHistory]);
 
-    if (localStorage.getItem("searchHistoryResult1") && localStorage.getItem("searchHistoryResult1").length === 17) {
+    if (localStorage.vinHistory && callVinHistory()[0].length === 17) {
         return (
             <section className="search-history">
                 <p>Search History</p>
