@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/vin_decoder/static/css/main.af1059a6.css",
-    "main.js": "/vin_decoder/static/js/main.49ec3bc9.js",
+    "main.js": "/vin_decoder/static/js/main.184294d4.js",
     "static/media/light_mode_icon.svg": "/vin_decoder/static/media/light_mode_icon.435cca1129542d6dbb604e27b89e5776.svg",
     "static/media/loading_icon.svg": "/vin_decoder/static/media/loading_icon.7f811bf893e020804400d9e55e19f591.svg",
     "index.html": "/vin_decoder/index.html",
@@ -9,10 +9,10 @@
     "static/media/search_icon.svg": "/vin_decoder/static/media/search_icon.56982c1a4d1ef20556e024945d6badc1.svg",
     "static/media/arrow_down_icon.svg": "/vin_decoder/static/media/arrow_down_icon.2e0eb198ce599e3a4ee5d4df46fd6bd1.svg",
     "main.af1059a6.css.map": "/vin_decoder/static/css/main.af1059a6.css.map",
-    "main.49ec3bc9.js.map": "/vin_decoder/static/js/main.49ec3bc9.js.map"
+    "main.184294d4.js.map": "/vin_decoder/static/js/main.184294d4.js.map"
   },
   "entrypoints": [
     "static/css/main.af1059a6.css",
-    "static/js/main.49ec3bc9.js"
+    "static/js/main.184294d4.js"
   ]
 }
