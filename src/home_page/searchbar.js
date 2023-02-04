@@ -23,10 +23,12 @@ const SearchBar = ({ vinNumber, setVinNumber, startFetching, setStartFetching })
     useEffect(() => {
         if (startFetching) {
             setSearchIcon(LoadingIcon);
-            setSearchIconAnimationCount(" infinite")
+            setSearchIconAnimationCount(" infinite");
         } else {
-            setSearchIconAnimationCount("");
-            const t = window.setTimeout(() => setSearchIcon(SearchIcon), 1000);
+            const t = window.setTimeout(() => {
+                setSearchIcon(SearchIcon);
+                setSearchIconAnimationCount("");
+            }, 1000);
             return () => {
                 window.clearTimeout(t);
             };

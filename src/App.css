@@ -311,6 +311,7 @@ body {
     -webkit-filter: var(--clr-icon-light);
             filter: var(--clr-icon-light);
     opacity: 0;
+    pointer-events: none;
 }
 
 .vin-data__variable:hover>img {
