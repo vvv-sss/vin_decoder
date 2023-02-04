@@ -1,10 +1,10 @@
-import SearchIcon from './icons/search_icon.svg';
 import ArrowDownIcon from './icons/arrow_down_icon.svg';
 import fetchVinData from './fetchVinData';
 import fetchDescription from './fetchDescription';
 import { useState, useEffect } from 'react';
 
 const DecodedVinNumberData = (props) => {
+    const { startFetching } = props;
     const [vinData, setVinData] = useState();
     const [vinIsCheckedMsg, setVinIsCheckedMsg] = useState();
     const [vinDataErrorMsg, setVinDataErrorMsg] = useState();
@@ -12,11 +12,11 @@ const DecodedVinNumberData = (props) => {
     const [descriptionDataErrorMsg, setDescriptionDataErrorMsg] = useState();
 
     // Fetching data on click after passing validation
-    props.startFetching &&
-    fetchVinData(props, setVinData, setVinIsCheckedMsg, setVinDataErrorMsg, SearchIcon);
+    startFetching &&
+    fetchVinData(props, setVinData, setVinIsCheckedMsg, setVinDataErrorMsg);
     
     // Fetching additional data for variables
-    useEffect(() => fetchDescription(setDescriptionData, setDescriptionDataErrorMsg),[props.startFetching]);
+    useEffect(() => fetchDescription(setDescriptionData, setDescriptionDataErrorMsg),[startFetching]);
 
     // Adding needed descriptions to own VIN Number data array
     if (vinData && descriptionData) {

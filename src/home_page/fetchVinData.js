@@ -1,7 +1,8 @@
 
-const fetchVinData = (props, setVinData, setVinIsCheckedMsg, setVinDataErrorMsg, SearchIcon) => {
+const fetchVinData = (props, setVinData, setVinIsCheckedMsg, setVinDataErrorMsg) => {
+    const { vinNumber, setStartFetching, setVinForSearchHistory } = props;
     const baseUrl = "https://vpic.nhtsa.dot.gov/api/";
-    const endpoint = `/vehicles/decodevin/${props.vinNumber}?format=json`;
+    const endpoint = `/vehicles/decodevin/${vinNumber}?format=json`;
 
     fetch(baseUrl + endpoint)
         .then(response => {
@@ -17,16 +18,13 @@ const fetchVinData = (props, setVinData, setVinIsCheckedMsg, setVinDataErrorMsg,
             const arrayForFetchedData =[];
             dataFiltered.forEach(obj => arrayForFetchedData.push([obj["Variable"], obj["Value"]]));
             setVinData(arrayForFetchedData);
-            setVinIsCheckedMsg(props.vinNumber);
-            props.setStartFetching(false);
-            props.setIsInputActive(false);
-            props.setVinForSearchHistory(props.vinNumber);
+            setVinIsCheckedMsg(vinNumber);
+            setStartFetching(false);
+            setVinForSearchHistory(vinNumber);
             sessionStorage.setItem("searchBtnClicked", "true");
             sessionStorage.setItem("aboutPageVisited", "true");
-            setTimeout(() => props.setSearchIconChange(SearchIcon), 1000);
         })
         .catch(error => {
-            setTimeout(() => props.setSearchIconChange(SearchIcon), 1000);
             setVinDataErrorMsg(error.message);
             console.log(error.message);
         });

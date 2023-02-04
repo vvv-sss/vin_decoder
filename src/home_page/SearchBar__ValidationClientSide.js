@@ -1,5 +1,5 @@
 
-function ValidationClientSide(props) {
+function ValidationClientSide({ vinToValidate, isInputActive }) {
     const searchBtn = document.querySelector(".search-bar__data-input button");
     const colorDefault = {color: "var(--clr-text)"};
     const colorPositive = {color: "var(--clr-positive)"};
@@ -8,24 +8,24 @@ function ValidationClientSide(props) {
     // Functions to validate VIN Number by three different conditions
     const validationByLength = () => {
         let textColor;
-        (props.vinToValidate.length === 0) ? textColor = colorDefault
-        : (props.vinToValidate.length === 17) ? textColor = colorPositive : textColor = colorNegative;
+        (vinToValidate.length === 0) ? textColor = colorDefault
+        : (vinToValidate.length === 17) ? textColor = colorPositive : textColor = colorNegative;
         return textColor;
     };
 
     const validationByLettersAndNumbers = () => {
         let textColor;
         let regExp = /^[!A-Z0-9\s]*$/;
-        (props.vinToValidate.length === 0) ? textColor = colorDefault
-        : regExp.test(props.vinToValidate) ? textColor = colorPositive : textColor = colorNegative;
+        (vinToValidate.length === 0) ? textColor = colorDefault
+        : regExp.test(vinToValidate) ? textColor = colorPositive : textColor = colorNegative;
         return textColor;
     }
 
     const validationByWrongSymbols = () => {
         let textColor;
         let regExp = /[qQiIoO\s]/;
-        (props.vinToValidate.length === 0) ? textColor = colorDefault
-        : !regExp.test(props.vinToValidate) ? textColor = colorPositive : textColor = colorNegative; 
+        (vinToValidate.length === 0) ? textColor = colorDefault
+        : !regExp.test(vinToValidate) ? textColor = colorPositive : textColor = colorNegative; 
         return textColor;
     }
 
@@ -37,7 +37,7 @@ function ValidationClientSide(props) {
         .every(color => color === colorPositive.color);
 
     // Appearing adn disappearing of search button
-    if (props.isInputActive) {
+    if (isInputActive) {
         if (isVinNumberValid) {
             searchBtn.style.opacity = "1";
             searchBtn.style.cursor = "pointer";
@@ -50,7 +50,7 @@ function ValidationClientSide(props) {
     }
 
     return (
-        props.isInputActive &&
+        isInputActive &&
         <div className="search-bar__validation">
             <p style={ validationByLength() }>17-character string</p>
             <p style={ validationByLettersAndNumbers() }>Only numbers and latin letters used</p>

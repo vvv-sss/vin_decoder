@@ -2,15 +2,12 @@ import SearchBar from "./SearchBar";
 import SearchHistory from "./SearchHistory";
 import HowToUseInfo from "./HowToUseInfo";
 import DecodedVinNumberData from './DecodedVinNumberData';
-import SearchIcon from './icons/search_icon.svg';
 import { useState, useEffect } from 'react';
 
 const Home = () => {
     const [vinNumber, setVinNumber] = useState("");
-    const [isInputActive, setIsInputActive] = useState(false);
     const [startFetching, setStartFetching] = useState(false);
-    const [searchIconChange, setSearchIconChange] = useState(SearchIcon);
-    const [vinForSearchHistory, setVinForSearchHistory] = useState();
+    const [vinForSearchHistory, setVinForSearchHistory] = useState(null);
 
     // Function to show last decoded VIN number after going to About page and back to Home page
     useEffect(() => {
@@ -27,23 +24,15 @@ const Home = () => {
             <SearchBar 
                 vinNumber={ vinNumber } 
                 setVinNumber={ setVinNumber }
-                searchIconChange={ searchIconChange }
-                setSearchIconChange={ setSearchIconChange }
-                isInputActive={ isInputActive }
-                setIsInputActive={ setIsInputActive }
                 startFetching={ startFetching }
                 setStartFetching={ setStartFetching } />
             <SearchHistory
-                vinForSearchHistory={ vinForSearchHistory } 
-                setVinNumber={ setVinNumber } 
-                setIsInputActive={ setIsInputActive } />
+                setVinNumber={ setVinNumber }
+                vinForSearchHistory={ vinForSearchHistory } />
             <HowToUseInfo />
             <DecodedVinNumberData 
                 vinNumber={ vinNumber }
                 setVinNumber={ setVinNumber }
-                setSearchIconChange={ setSearchIconChange }
-                isInputActive={ isInputActive }
-                setIsInputActive={ setIsInputActive }
                 startFetching={ startFetching }
                 setStartFetching={ setStartFetching } 
                 vinForSearchHistory={ vinForSearchHistory }

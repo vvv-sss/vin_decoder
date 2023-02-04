@@ -1,23 +1,22 @@
 import { useState, useEffect } from "react";
 
-const SearchHistory = (props) => {
-
+const SearchHistory = ({ vinForSearchHistory, setVinNumber }) => {
     // Creation of 5 history positions inside Local Storage
-    if (props.vinForSearchHistory) {
-            if ((props.vinForSearchHistory !== localStorage.getItem("searchHistoryResult1")) &&
-            (props.vinForSearchHistory !== undefined)) {
+    if (vinForSearchHistory) {
+            if ((vinForSearchHistory !== localStorage.getItem("searchHistoryResult1")) &&
+            (vinForSearchHistory !== undefined)) {
             localStorage.setItem("searchHistoryResult5", localStorage.getItem("searchHistoryResult4"));
             localStorage.setItem("searchHistoryResult4", localStorage.getItem("searchHistoryResult3"));
             localStorage.setItem("searchHistoryResult3", localStorage.getItem("searchHistoryResult2"));
             localStorage.setItem("searchHistoryResult2", localStorage.getItem("searchHistoryResult1"));
-            localStorage.setItem("searchHistoryResult1", props.vinForSearchHistory);
+            localStorage.setItem("searchHistoryResult1", vinForSearchHistory);
         }
     }
 
     // Handle of search element click
     const handleClick = (val) => {
-        props.setVinNumber(val);
-        props.setIsInputActive(true);
+        setVinNumber(val);
+        document.querySelector(".search-bar__data-input input").focus();
     }
 
     // Block to create and render search history list
@@ -27,14 +26,14 @@ const SearchHistory = (props) => {
         const list = [];
         for(let i = 1; i < 6; i++) {
             let historyValue = localStorage.getItem(`searchHistoryResult${i}`);
-            if (historyValue.length === 17) {
+            if (historyValue && historyValue.length === 17) {
                 let element = <li key={ i } onClick={ () => handleClick(historyValue) }>{ historyValue }</li>;
                 list.push(element);
             }
         }
         setSearchHistoryList(list);
     }
-    useEffect(() => createSearchHistoryList, [props.vinForSearchHistory]);
+    useEffect(() => createSearchHistoryList, [vinForSearchHistory]);
 
     if (localStorage.getItem("searchHistoryResult1") && localStorage.getItem("searchHistoryResult1").length === 17) {
         return (
